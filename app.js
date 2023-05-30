@@ -1,4 +1,5 @@
 const express = require('express')
+const { default: mongoose } = require('mongoose')
 const app = express()
 const morgan = require('morgan')
 
@@ -24,6 +25,13 @@ app.post(`${api}/products`, (req, res) => {
   console.log(newProduct)
   res.send(newProduct)
 });
+
+mongoose.connect('mongodb+srv://uhanierwin:RaQRKvINTyqKNhvp@cluster0.gcqwcb2.mongodb.net/')
+.then(() => {
+  console.log('Database connection is ready')
+}).catch((err) => {
+  console.log(err)
+})
 
 app.listen(3004, () => {
   console.log(api)
